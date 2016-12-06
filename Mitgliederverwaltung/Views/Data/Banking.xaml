@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="Mitgliederverwaltung.Views.Data.Banking"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+
+             DataContext="{Binding GridView, Source={StaticResource Locator}}">
+
+
+    <DataGrid AutoGenerateColumns="false" ItemsSource="{Binding Path=Members, Mode=TwoWay}"
+              HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" CanUserDeleteRows="True"
+              CanUserAddRows="False">
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding Path=Id}" Header="ID" Visibility="Visible" IsReadOnly="True">
+                <DataGridTextColumn.ElementStyle>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                    </Style>
+                </DataGridTextColumn.ElementStyle>
+            </DataGridTextColumn>
+            <DataGridTextColumn Binding="{Binding Path=Ganzername}" Header="Mitgliedsname" Visibility="Visible"
+                                IsReadOnly="True" />
+            <DataGridTextColumn Binding="{Binding Path=KontoInh, Mode=TwoWay}" Header="Kontoinhaber"
+                                Visibility="Visible" />
+            <DataGridTextColumn Binding="{Binding Path=Iban, Mode=TwoWay}" Header="Iban" Visibility="Visible" />
+            <DataGridTextColumn Binding="{Binding Path=BIC, Mode=TwoWay}" Header="BIC" Visibility="Visible" />
+            <DataGridTemplateColumn Header="Gezahlt?">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <CheckBox IsChecked="{Binding Path=Payed,UpdateSourceTrigger=PropertyChanged}"
+                                  HorizontalAlignment="Center" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="Gezahlt bis">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <DatePicker
+                            Text="{Binding ConverterCulture='de-DE',  StringFormat=dd.MM.yyyy, Path=PayedUntil, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="Befreit bis">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <DatePicker
+                            Text="{Binding ConverterCulture='de-DE',  StringFormat=dd.MM.yyyy, Path=BefreitBis, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+
+
+        </DataGrid.Columns>
+    </DataGrid>
+
+</UserControl>

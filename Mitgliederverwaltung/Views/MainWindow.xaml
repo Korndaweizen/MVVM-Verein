@@ -1,0 +1,28 @@
+﻿<controls:MetroWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Mitgliederverwaltung"
+    x:Class="Mitgliederverwaltung.Views.MainWindow"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:views="clr-namespace:Mitgliederverwaltung.Views"
+    xmlns:data="clr-namespace:Mitgliederverwaltung.Views.Data"
+    xmlns:importExport="clr-namespace:Mitgliederverwaltung.Views.ImportExport"
+    xmlns:addUser="clr-namespace:Mitgliederverwaltung.Views.AddUser"
+    GlowBrush="{DynamicResource AccentColorBrush}"
+    mc:Ignorable="d"
+    Title="Mitgliederverwaltung" Height="500" Width="855">
+    <controls:MetroAnimatedTabControl DockPanel.Dock="Top" HorizontalAlignment="Stretch">
+        <TabItem Header="Mitgliederliste">
+            <data:ParentDataView x:Name="ParentDataView" />
+        </TabItem>
+        <TabItem Header="Neues Mitglied">
+            <addUser:AddUser x:Name="AddUser" />
+        </TabItem>
+        <TabItem Header="Export">
+            <importExport:ExportMain x:Name="ExportMain" />
+        </TabItem>
+    </controls:MetroAnimatedTabControl>
+
+</controls:MetroWindow>
